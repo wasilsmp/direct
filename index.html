@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connecting to Wasil SMP...</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .card {
+            max-width: 400px;
+            padding: 30px;
+            background: #1d1d1d;
+            border-radius: 16px;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            background: #43a047;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>🎮 Wasil SMP</h1>
+        <p>Membuka Minecraft secara otomatis...</p>
+        <p style="font-size: 13px; color: #aaa;">
+            Jika Minecraft tidak terbuka secara otomatis, klik tombol di bawah:
+        </p>
+        <a id="manualLink" href="#" class="btn">Buka Minecraft</a>
+    </div>
+
+    <script>
+        const PREFIX = "Wasil SMP";
+        const IP = "wasil.my.id";
+        const PORT = "25672";
+
+        // Mengambil parameter 'name' dari URL jika ada (misal: ?name=Survival)
+        const params = new URLSearchParams(window.location.search);
+        const customName = params.get("name");
+
+        // Jika ada parameter nama, gabungkan dengan awalan "Wasil SMP"
+        const finalName = customName ? `${PREFIX} ${customName}` : PREFIX;
+
+        // Format Deep Link Minecraft
+        const deepLink = `minecraft://?addExternalServer=${encodeURIComponent(finalName)}|${IP}:${PORT}`;
+
+        // Set href untuk tombol cadangan (manual)
+        document.getElementById("manualLink").href = deepLink;
+
+        // Eksekusi otomatis untuk langsung membuka Minecraft
+        window.location.href = deepLink;
+    </script>
+
+</body>
+</html>
